@@ -6,10 +6,10 @@ class Settings(BaseSettings):
     reminder_interval_seconds: int = 60
     
 
-    vapid_public_key: str|None
-    vapid_private_key: str|None
-    vapid_subject: str|None
+    vapid_public_key: str | None = None
+    vapid_private_key: str | None = None
+    vapid_subject: str | None = None
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 settings = Settings()
