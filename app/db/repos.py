@@ -58,3 +58,10 @@ class Repository:
             return True
         return False
     
+    async def update_task(self, task: Task, title: str, remind_at: datetime | None, reminder_sent: bool) -> Task:
+        task.title = title
+        task.remind_at = remind_at
+        task.reminder_sent = reminder_sent
+        await self.session.commit()
+        await self.session.refresh(task)
+        return task
