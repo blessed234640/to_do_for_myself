@@ -3,7 +3,7 @@ from collections.abc import AsyncGenerator
 from app.db.repos import Repository
 from app.services.task_service import TaskService
 from app.services.reminder_service import ReminderService
-from app.integrations.notifier import PushSender, ConsoleNotifier
+from app.integrations.notifier import PushSender, WebPushNotifier
 from app.db.session import async_session_maker 
 from fastapi import Depends
 
@@ -18,7 +18,7 @@ async def get_task_service(repos: Repository = Depends(get_repository)) -> TaskS
     return TaskService(repos)
 
 async def get_notifier() -> PushSender:
-    return ConsoleNotifier()
+    return WebPushNotifier()
 
 async def get_reminder_service(repos: Repository = Depends(get_repository),
     notifier: PushSender = Depends(get_notifier)) -> ReminderService:

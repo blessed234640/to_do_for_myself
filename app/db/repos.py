@@ -86,3 +86,7 @@ class Repository:
         await self.session.commit()
         await self.session.refresh(sub)
         return sub
+
+    async def delete_subscription(self, sub: PushSubscription) -> None:
+        await self.session.delete(sub)
+        await self.session.commit()
