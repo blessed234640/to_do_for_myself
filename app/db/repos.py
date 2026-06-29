@@ -15,7 +15,7 @@ class Repository:
         await self.session.refresh(task)
         return task
 
-    async def list_tasks(self) -> list[Task]:
+    async def list_tasks(self) -> list[PushSubscription]:
         query = select(Task)
         result = await self.session.execute(query)
         return list(result.scalars().all())
@@ -70,3 +70,19 @@ class Repository:
         await self.session.commit()
         await self.session.refresh(task)
         return task
+
+    async def upsert_subscription(self, endpoint: str, p256dh: str, auth: str) -> PushSubscription:
+        query = select(PushSubscription).where(PushSubscription.endpoint == endpoint)
+        result = await self.session.execute(query)
+        sub = result.scalar_one_or_none()
+
+        if sub:
+            sub.p256dh = p256dh
+            sub.auth = auth
+        else:
+            sub = PushSubscription(endpoint=endpoint, p256dh=p256dh, auth=auth)
+            self.session.add(sub)
+
+        await self.session.commit()
+        await self.session.refresh(sub)
+        return sub
