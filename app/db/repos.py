@@ -20,6 +20,11 @@ class Repository:
         result = await self.session.execute(query)
         return list(result.scalars().all())
     
+    async def list_subscriptions(self,) -> list[Task]:
+        query = select(PushSubscription)
+        result = await self.session.execute(query)
+        return list(result.scalars().all())
+    
     async def get_task(self, task_id: int) -> Task | None:
         return await self.session.get(Task, task_id)
     
