@@ -1,0 +1,102 @@
+/* §1 — Единственный источник правды. Дизайн-токены «Хронометр». */
+
+:root {
+  /* Цвет — светлая тема (по умолчанию) */
+  --paper: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #15181d;
+  --ink-soft: #5b616e;
+  --hairline: #e3e6eb;
+  --lume: #f2a93b;
+  --lume-ink: #5a3d08;
+  --alert: #cc3b40;
+  --settled: #7c8698;
+
+  /* Типографика */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-ui: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Тайп-шкала (mobile-first, rem) */
+  --display-xl: 2.5rem;
+  --display-xl-lh: 1.05;
+  --display: 1.75rem;
+  --display-lh: 1.1;
+  --title: 1.0625rem;
+  --title-lh: 1.3;
+  --body: 0.9375rem;
+  --body-lh: 1.45;
+  --label: 0.8125rem;
+  --label-lh: 1.3;
+  --mono-lg: 1.25rem;
+  --mono: 0.8125rem;
+
+  /* Спейсинг (4-базовый) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Радиусы */
+  --radius-card: 12px;
+  --radius-input: 8px;
+  --radius-toggle: 6px;
+
+  /* Тени — только композер/шит; строки плоские */
+  --shadow-float: 0 8px 24px rgba(20, 24, 29, 0.1);
+
+  /* Движение */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Каркас */
+  --col-max: 560px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1216;
+    --surface: #171b21;
+    --ink: #e8eaed;
+    --ink-soft: #9aa1ad;
+    --hairline: #262b33;
+    --lume: #f4b454;
+    --lume-ink: #1a1205;
+    --alert: #ff6166;
+    --settled: #5c6470;
+    --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Явное переопределение темы (имеет приоритет над media) */
+[data-theme='dark'] {
+  --paper: #0f1216;
+  --surface: #171b21;
+  --ink: #e8eaed;
+  --ink-soft: #9aa1ad;
+  --hairline: #262b33;
+  --lume: #f4b454;
+  --lume-ink: #1a1205;
+  --alert: #ff6166;
+  --settled: #5c6470;
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] {
+  --paper: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #15181d;
+  --ink-soft: #5b616e;
+  --hairline: #e3e6eb;
+  --lume: #f2a93b;
+  --lume-ink: #5a3d08;
+  --alert: #cc3b40;
+  --settled: #7c8698;
+  --shadow-float: 0 8px 24px rgba(20, 24, 29, 0.1);
+}
